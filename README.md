@@ -2,7 +2,7 @@
 
 **A token launchpad on Solana where every token's trading rules are enforced on-chain, by the token itself.**
 
-Website: [hookedpad.com](https://www.hookedpad.com) · X: [@hoookedpad](https://x.com/hoookedpad) · Network: Solana mainnet
+**[Pitch deck (PDF)](hooked-pitch-deck.pdf)** · Website: [hookedpad.com](https://www.hookedpad.com) · X: [@hoookedpad](https://x.com/hoookedpad) · Network: Solana mainnet
 
 Every token launched on Hooked is a Token-2022 mint with a **transfer hook**: a program Solana calls on every buy, sell and send. If a trade breaks the token's rule, it never lands. The token trades on a Meteora Dynamic Bonding Curve and, for most rules, on any DEX or aggregator, because the rule lives in the token and not in a website.
 
