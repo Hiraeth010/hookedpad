@@ -1,0 +1,921 @@
+[
+ {
+  "id": "fomo",
+  "name": "FOMO-only buys",
+  "tagline": "It can only be bought through the FOMO app.",
+  "blurb": "Every buy from the Meteora pool has to come through the FOMO app: the hook checks that FOMO's own signing wallet co-signed the transaction, and refuses the buy otherwise. Sells and wallet-to-wallet sends are never blocked, so holders can always exit. The dev wallet is also permanently whitelisted, so you can buy anywhere with it. Everyone else can only buy on FOMO. This lets the dev open up the pool on FOMO, which takes a few buys to trigger. When the curve graduates, Meteora switches the rule off and it trades anywhere.",
+  "family": "Guards",
+  "venue": "safe",
+  "program": "4Tabcoy1niosiNAGHMruLBFscgJWXZsVF3pfij3FqMB5",
+  "chips": [
+   "dev buy: 0.1 SOL"
+  ]
+ },
+ {
+  "id": "pumpapp",
+  "name": "Pump App only",
+  "tagline": "It can only be bought in the Pump app.",
+  "blurb": "Every buy from the Meteora pool has to be made in the Pump app: the Pump app buys a token like this through Jupiter's app API and the OKX router, and the swap Jupiter builds for it carries a tag that jup.ag's own swaps don't. The hook only lets a buy through when it runs through that router and carries that tag. Buying on jup.ag, in FOMO, through trading terminals like Axiom and Photon, or straight from the pool is refused. Another app built on the same Jupiter API could also get through, which has been about 1 buy in 70 so far. Sells and wallet-to-wallet sends are never blocked, so holders can always exit. The dev wallet is permanently whitelisted, so you can buy anywhere with it. When the curve graduates, Meteora switches the rule off and it trades anywhere.",
+  "family": "Guards",
+  "venue": "safe",
+  "program": "BXax2KXrnT7qRf7cva9cLJpqDGXWywsw4ucLwtGiTa28",
+  "chips": [
+   "dev buy: 0.1 SOL"
+  ]
+ },
+ {
+  "id": "social",
+  "name": "Social trading",
+  "tagline": "It only trades in FOMO or the Pump app: buys and sells.",
+  "blurb": "Every trade with the Meteora pool, buying and selling, has to be made in one of two apps. A FOMO trade is recognised by FOMO's own signature on the transaction, which nobody else can produce. A Pump app trade is recognised by the route it takes: the Pump app trades through Jupiter's app API and the OKX router, and the swap built for it carries a tag that jup.ag's own swaps don't. Trading on jup.ag, through terminals like Axiom and Photon, or straight with the pool is refused, in both directions. The Pump half isn't forgery-proof: another app built on the same Jupiter API could also get through. Because sells are restricted too, holders have no exit outside the two apps: if both ever stop trading the token, nobody can sell it. The rule only lifts if the curve graduates. Wallet-to-wallet sends always work. The dev wallet is permanently whitelisted, so you can buy and sell anywhere with it. When the curve graduates, Meteora switches the rule off and it trades anywhere.",
+  "family": "Guards",
+  "venue": "safe",
+  "program": "DMohCzuYMQUsmYAiitgtYtSpsBtyEw9UWZha7EGqTv8M",
+  "chips": [
+   "dev buy: 0.1 SOL"
+  ]
+ },
+ {
+  "id": "opensea",
+  "name": "OpenSea only",
+  "tagline": "It only trades on OpenSea: buys and sells.",
+  "blurb": "Every trade with the Meteora pool, buying and selling, has to be made on OpenSea: every swap made on OpenSea carries OpenSea's own marker (a memo, sometimes also its wallet's signature), and the hook refuses any trade without it. Ordinary apps and bots don't add that marker, though anyone building their own transaction could. Because sells are restricted too, holders have no exit outside OpenSea. OpenSea hasn't yet been seen trading a token still on its bonding curve; if it can't, nobody but you can buy or sell until the curve graduates, and holders can only send it between wallets. Wallet-to-wallet sends always work. The dev wallet is permanently whitelisted, so you can buy and sell anywhere with it. When the curve graduates, Meteora switches the rule off and it trades anywhere.",
+  "family": "Guards",
+  "venue": "safe",
+  "program": "VqzxRoumJqbx99dQeWDoRC5XL48r5ZZYANwCgpuWVPW",
+  "chips": [
+   "dev buy: 0.1 SOL"
+  ]
+ },
+ {
+  "id": "sellcaps",
+  "name": "Graduated sell caps",
+  "tagline": "The bigger your bag, the less you can sell in one go.",
+  "blurb": "Small holders sell freely, but the bigger a wallet's bag, the smaller its per-sell cap, down to a floor. A whale can build a position but can't dump it in one sell. The hook reads the bag straight from the sell, so there's nothing to fund and no minimum buy. Buys and wallet-to-wallet sends are never capped.",
+  "family": "Caps",
+  "venue": "safe",
+  "program": "9Am6KfHqhi3vYmZKpE2kRJxmbNvwggujNzqqSaqdor2Z",
+  "chips": [
+   "sell cap for small holders: 1 % supply",
+   "sell cap for the biggest bags: 0.1 % supply",
+   "bag size that gets the smallest cap: 3 % supply"
+  ]
+ },
+ {
+  "id": "p2p",
+  "name": "P2P-only",
+  "tagline": "Moves wallet to wallet only until it graduates. Only you can buy the curve.",
+  "blurb": "Nobody can buy or sell it on a market: the hook refuses any transfer a program makes, so it only moves when a wallet sends it to another wallet. The one exception is your own wallet, which can buy from the bonding curve (all of it, if you like) and hand tokens out. When the curve fills up, the token graduates and Meteora switches the rule off, so from then on it trades normally everywhere.",
+  "family": "Guards",
+  "venue": "safe",
+  "program": "B9HAaxbFnz868uYsVPWBJr1hL2cfZvXqzhssR3V2VQaT",
+  "chips": []
+ },
+ {
+  "id": "maxhold",
+  "name": "Max per wallet",
+  "tagline": "No wallet can hold more than a set share of supply.",
+  "blurb": "After every buy or transfer the hook checks what the receiving wallet now holds, and refuses the trade if it would go over your cap, for example 1% of supply. The Meteora pool is exempt so trading and graduation work, and so is your own wallet. No per-wallet setup and nothing to fund.",
+  "family": "Caps",
+  "venue": "safe",
+  "program": "BVM8FK38fAJdWj4pezJh9xHaYaektV4f5Df9dq7y5TDC",
+  "chips": [
+   "max per wallet: 1 % supply"
+  ]
+ },
+ {
+  "id": "hours",
+  "name": "Market hours",
+  "tagline": "Trades like a stock: Monday to Friday, 9:30am to 4pm New York time.",
+  "blurb": "The token only trades during the stock market's regular session: Monday to Friday, 9:30am to 4:00pm New York time, with daylight saving handled automatically. Outside those hours the hook refuses the trade. You choose whether sells stay open around the clock and whether stock-market holidays are observed. Sending between wallets always works, and your own wallet can always buy.",
+  "family": "Guards",
+  "venue": "safe",
+  "program": "EZet2oSoussVujse5U8W4T2NZsTuJ1rZBqQ8J188iJKk",
+  "chips": [
+   "after hours: closed",
+   "stock-market holidays: observe"
+  ]
+ },
+ {
+  "id": "king",
+  "name": "King of the Hill",
+  "tagline": "The biggest buy takes the crown and earns from every trade.",
+  "blurb": "The largest qualifying buy holds the crown. To steal it, another wallet has to beat the King's winning buy, which slowly decays so the throne never becomes unreachable. While they hold the crown the King earns about 0.5% of every trade, paid in SOL by the program itself; selling or sending any tokens gives the crown up. The token page shows the King, the winning buy, the reign and a Hall of Kings. These tokens trade with a 1.65% fee instead of 1%, and they trade on any DEX. The game runs while the token is on its curve, so pick the Permanent curve to keep it going.",
+  "family": "Rewards",
+  "venue": "safe",
+  "program": "63VLLdKEZVjwKN4Y6CqeeFkLGzMoSZxFAXsfiLwnKKkD",
+  "chips": [
+   "smallest buy that can take the crown: 0.1 SOL",
+   "a challenger must beat the king by: 5 %",
+   "the bar to beat halves every: hour"
+  ]
+ },
+ {
+  "id": "conviction",
+  "name": "Conviction cap",
+  "tagline": "Hold without selling and your own buy limit grows.",
+  "blurb": "The opposite of a flat whale cap. Every wallet starts with a small limit per buy; each minute, hour or day it holds without selling (you choose), its own limit climbs, up to a ceiling you set. Sell and that wallet's clock starts again. New money is throttled while proven holders earn the right to buy bigger. Sells are never capped, your own wallet is exempt, and it trades on any DEX.",
+  "family": "Caps",
+  "venue": "safe",
+  "program": "9eQyvzp3hfghBhA4VUECLZzyZswmFGcne1rfs9QN3CnL",
+  "chips": [
+   "starting buy cap: 0.1 % supply",
+   "cap grows every: day",
+   "growth each time: 0.1 % supply"
+  ]
+ },
+ {
+  "id": "custom",
+  "name": "Custom hook",
+  "tagline": "Describe the rule you want and AI writes the hook.",
+  "blurb": "Your own rules, written with AI. Say what you want the token to do, in your own words; the AI writes it as a short rule set, checks it with the real compiler and tests it, and you can edit every line. The rules can look at the trade, each wallet's own buys and sells, the clock in any time zone, the market cap, the transaction's fees and which app sent it. They are stored on-chain at launch, run on every transfer, can never change, and the token still trades on any DEX.",
+  "family": "Guards",
+  "venue": "safe",
+  "program": "9eQyvzp3hfghBhA4VUECLZzyZswmFGcne1rfs9QN3CnL",
+  "chips": []
+ },
+ {
+  "id": "editable",
+  "name": "Editable hook",
+  "tagline": "A Custom hook you can rewrite at any time, forever.",
+  "blurb": "A Custom hook whose rules are never locked. You launch with any rule set (or none) and can replace it whenever you like, as often as you like, with the same AI builder: only your wallet can make a change, and every change is made on-chain and shown on the token's page. 5% of the token's trading fees is set aside as its own fund that pays for the AI work on its rules; the other 80% still goes to the Hooked buyback and burn. Holders should know the rules can change, including rules about selling. It still trades on any DEX, with the normal 1% fee.",
+  "family": "Guards",
+  "venue": "safe",
+  "program": "9eQyvzp3hfghBhA4VUECLZzyZswmFGcne1rfs9QN3CnL",
+  "chips": [
+   "notice before a change takes effect: 0"
+  ]
+ },
+ {
+  "id": "dao",
+  "name": "DAO hook",
+  "tagline": "Holders vote on the rules, and AI rewrites the hook.",
+  "blurb": "A Custom hook run by its holders. Anyone holding the minimum you set can sign in with their wallet, post an idea for the token's rules and vote ideas up or down. When an idea reaches the number of votes you set, the AI builder turns it into a rule set, checks and tests it, and Hooked's keeper puts it on-chain. Nobody, including you, can change the rules any other way. 5% of the token's trading fees is set aside as its own fund that pays for the AI work and the changes; the other 80% still goes to the Hooked buyback and burn. It still trades on any DEX, with the normal 1% fee.",
+  "family": "Guards",
+  "venue": "safe",
+  "program": "9eQyvzp3hfghBhA4VUECLZzyZswmFGcne1rfs9QN3CnL",
+  "chips": [
+   "tokens needed to take part: 1,000,000 tokens",
+   "votes for an idea to pass: 25 votes",
+   "notice before a change takes effect: 0"
+  ]
+ },
+ {
+  "id": "schedule",
+  "name": "Trading hours",
+  "tagline": "Trades only on the days and hours you set, in any time zone.",
+  "blurb": "You set the trading week: which days the token trades and the hours on each day, in any time zone in the world, with daylight saving followed automatically. Outside those hours the hook refuses the trade. A day can run past midnight or stay open all day. You choose whether sells stay open around the clock. Sending between wallets always works, your own wallet can always buy, and the hours are fixed at launch.",
+  "family": "Guards",
+  "venue": "safe",
+  "program": "BUwCiwrRfVgNKEhHryBb626oKCRqNfm5hhkebrXKG6iY",
+  "chips": [
+   "outside your hours: closed"
+  ]
+ },
+ {
+  "id": "skin",
+  "name": "Skin in the game",
+  "tagline": "Only wallets that still hold real SOL or USDC after buying can buy.",
+  "blurb": "Bot farms buy from wallets funded with dust. With this rule, a buy only goes through if the buyer still holds at least your minimum of SOL, or of USDC, after paying for it. You set both minimums, and either can be 0 to leave that currency out: for example 0 SOL and 500 USDC means only wallets holding 500 USDC can buy. Sells and wallet-to-wallet sends are never blocked, and your own wallet is exempt. The hook reads the buyer's own wallet and USDC balance, which trading apps like Jupiter and Axiom don't supply, so the token is bought and sold on its Hooked page. A determined bot can still top a wallet up for the length of one transaction; this stops cheap dust-wallet farms.",
+  "family": "Guards",
+  "venue": "client",
+  "program": "2zSiLjfBo5t6arSCk5o9UyLGascwyLooGVhdLHcRBsje",
+  "chips": [
+   "minimum sol: 0.5 SOL",
+   "minimum usdc: 50 USDC"
+  ]
+ },
+ {
+  "id": "pingpong",
+  "name": "Ping Pong",
+  "tagline": "Buys and sells take turns: one buy, then one sell, forever.",
+  "blurb": "Every trade with the pool has to answer the last one: after a buy the next trade must be a sell, and after a sell it must be a buy. Two buys or two sells in a row are refused, for everyone, the creator included. A trade smaller than your minimum still goes through when it's its turn, but doesn't hand the turn over, so dust can't play the game. Two trades of the token in one transaction are refused, so nobody can sneak a tiny opposite trade in with their real one. If nobody takes the turn for the time you set, either side can go next, so a quiet token never gets stuck. Wallet-to-wallet sends always work. The first trade must be a buy.",
+  "family": "Guards",
+  "venue": "safe",
+  "program": "Bf7ecqFieSoacTNbangY4trvnU7bVig6na1RMr6G84dk",
+  "chips": [
+   "minimum to take the turn: 0.01 % supply",
+   "turn frees up after: 10 minutes"
+  ]
+ },
+ {
+  "id": "pegs",
+  "name": "Pegs",
+  "tagline": "Every whole unit you hold is a numbered object with its own art.",
+  "blurb": "The supply is split into a fixed collection of numbered objects, up to 65,535. Every whole unit a wallet holds is one of them, with its own number and its own art: buy across a whole unit and a new number is minted to you, sell below it and your newest one is burned back to the pool, and sending tokens to a friend moves your newest objects with them. Upload your own art at launch, one image per object or a smaller set shared across the numbers, or let Hooked draw one from each number. Trading is never blocked by the objects: a wallet that bought elsewhere claims its objects on the token page. Buys and sells happen on the token's Hooked page.",
+  "family": "Rewards",
+  "venue": "client",
+  "program": "2JwcGx9cUK1UyTsztkRAnCeAPgbJXkwCqSP9ghkPi3Md",
+  "chips": [
+   "objects in the collection: 10,000 objects"
+  ]
+ },
+ {
+  "id": "potato",
+  "name": "Hot potato",
+  "tagline": "The latest buyer can't sell until someone buys after them.",
+  "blurb": "Whoever bought last is holding the hot potato: they can't sell or send the token until a different wallet buys after them, which passes the potato on. Everyone else trades and sends freely, and buys are never blocked. A buy has to be at least your minimum to pass the potato, so a dust buy from a friend's wallet can't free the holder. You can also let the potato go cold after a while, so a holder isn't stuck if trading goes quiet. Nobody is exempt, you included.",
+  "family": "Guards",
+  "venue": "safe",
+  "program": "CapP1YJk8Rh4d17szh45zXHy8vSMbZoNXfzm6zvNTgz7",
+  "chips": [
+   "minimum buy to pass the potato: 0.01 % supply",
+   "potato goes cold after: 0 minutes"
+  ]
+ },
+ {
+  "id": "blocklist",
+  "name": "Blocklist",
+  "tagline": "Named wallets can never receive the token.",
+  "blurb": "The opposite of an allowlist: you name up to 200 wallets that can never receive the token. They can't buy it from the pool and nobody can send it to them; everyone else trades normally. The list is written on-chain at launch and sealed, so it can never change, and the token still trades on any DEX.",
+  "family": "Guards",
+  "venue": "safe",
+  "program": "8zw1psRFN541E1A3uzxB3uBXjUj3dVtkLHS3Ad99dFqP",
+  "chips": []
+ },
+ {
+  "id": "feecap",
+  "name": "Sniper-fee cap",
+  "tagline": "Buys paying sniper-sized priority fees or tips are refused at launch.",
+  "blurb": "Snipers win launches by outbidding everyone with huge priority fees and Jito tips. For a launch window you choose, the hook reads every buy's transaction and refuses it if it pays more than your cap in priority fee or in Jito tips. Normal buyers pay tiny fees, so they never notice. When the window ends, anyone can pay whatever they like. Sells are never blocked, and your own wallet is exempt.",
+  "family": "Guards",
+  "venue": "safe",
+  "program": "BPVEVJfsDvPQ4A8oRntVudUAJyaUvFuSJVk5tidKz7Fp",
+  "chips": [
+   "launch window: 10 minutes",
+   "max priority fee per buy: 0.002 SOL",
+   "max jito tip per buy: 0.002 SOL"
+  ]
+ },
+ {
+  "id": "timecap",
+  "name": "Rising max per wallet",
+  "tagline": "Max per wallet starts small and rises on a timer.",
+  "blurb": "Every wallet's max holding starts small, for example 0.1% of supply, and rises for everyone on a timer: a fixed step or doubling, as often as you choose. It never stops rising, so the token opens up completely over time. Snipers can only grab a tiny bag at launch. The hook reads the receiving wallet's balance after every buy or transfer, so there's nothing to fund and no per-wallet setup. The Meteora pool and your own wallet are exempt.",
+  "family": "Caps",
+  "venue": "safe",
+  "program": "6AH1GVkqUdYCrbse28TcFSLyYTSiYqQVneaxvSBTSyp3",
+  "chips": [
+   "starting max per wallet: 0.1 % supply",
+   "how it rises: step",
+   "rises by: 0.1 % supply"
+  ]
+ },
+ {
+  "id": "slidecap",
+  "name": "Sliding caps",
+  "tagline": "The max buy and max sell change as the market cap grows.",
+  "blurb": "You set the max per buy and max per sell at launch, then up to five market-cap levels where they change, for example max sell 1% at launch, 0.5% from $100,000 and 0.1% from $1,000,000. On every trade the hook reads the price from the token's own Meteora pool and applies the highest level the market cap has reached, so a whale has to exit in ever smaller pieces as the token grows. If the price falls back under a level, the level below applies again. Caps go as low as 0.001% of supply. Nobody is exempt, including you. Wallet-to-wallet sends are never capped.",
+  "family": "Caps",
+  "venue": "safe",
+  "program": "8uDCgT4KrMNsX6nJzqCFtLansP9AJef4deWWBk4nG9VA",
+  "chips": [
+   "max per buy at launch: 2 % supply",
+   "max per sell at launch: 1 % supply",
+   "then, as the market cap grows: 100000:1:0.5;500000:0.5:0.25;1000000:0.25:0.1"
+  ]
+ },
+ {
+  "id": "capbeacon",
+  "name": "Beacon",
+  "tagline": "Trade it freely. When its market cap hits the target, its Entangled token unlocks.",
+  "blurb": "No cap and no gate. On every trade the Beacon's hook reads its own Meteora pool and remembers the highest market cap it has reached. Pair it with an Entangled token, and that token unlocks for good the first time the Beacon's market cap reaches the target you set.",
+  "family": "Reactive",
+  "venue": "safe",
+  "program": "8h3iUcxwcCb2YJW99HbTmPohhitPsE94dHDuEAhwBJ7U",
+  "chips": []
+ },
+ {
+  "id": "capentangled",
+  "name": "Entangled",
+  "tagline": "Locked until its Beacon token reaches a market cap you choose.",
+  "blurb": "Every transfer is refused until its Beacon token's market cap reaches your target, for example $20,000. The hook reads the Beacon's Meteora pool directly, and the first trade after the target is hit unlocks this token for good, even if the Beacon falls back later. The target is set in dollars and fixed in SOL at launch.",
+  "family": "Reactive",
+  "venue": "safe",
+  "program": "8h3iUcxwcCb2YJW99HbTmPohhitPsE94dHDuEAhwBJ7U",
+  "chips": [
+   "unlocks when the beacon's market cap reaches: 20,000 USD"
+  ]
+ },
+ {
+  "id": "airdrop",
+  "name": "Buyer rewards",
+  "tagline": "Every buy earns the buyer tokens or NFTs from a vault you fill.",
+  "blurb": "Fill a vault with any token or with NFTs. Every qualifying buy records a reward for the buyer inside the transfer, and the buyer collects it on Hooked: tokens, or one NFT per reward. It works for every buyer, even ones who have never held that token. Buys only earn while the vault can cover them, so every reward is covered. You can withdraw anything that isn't already owed to buyers, and anyone can top the vault up.",
+  "family": "Rewards",
+  "venue": "client",
+  "program": "3MNVGyhzq5iLN2ZAnkSnBdwqEomtdQ9vt7qS6nheauok",
+  "chips": [
+   "minimum buy to earn: 0.05 % supply",
+   "reward-record rent pool: 0.05 SOL"
+  ]
+ },
+ {
+  "id": "breathing",
+  "name": "Breathing cap",
+  "tagline": "The buy cap rises and falls on the clock, forever.",
+  "blurb": "An oscillator inside the hook swings the per-buy cap up and down on a fixed cycle: wide open at the peaks, tight at the troughs, then open again, for the life of the token with nothing to crank. You choose the cycle length, the base cap and how far it swings. Sells and wallet-to-wallet sends are never capped, and your own wallet can buy any size.",
+  "family": "Dynamics",
+  "venue": "safe",
+  "program": "C7Whr2PbMHGAt8J7gpvRVfmUqhW9nBk17qBbZDmdnFmk",
+  "chips": [
+   "cycle length: 300 seconds",
+   "base cap: 1 % supply",
+   "swing: 60 % of the base"
+  ]
+ },
+ {
+  "id": "momentum",
+  "name": "Momentum",
+  "tagline": "Buying revs it up; a quiet market lets it ring down.",
+  "blurb": "A damped oscillator that starts at rest. Every buy kicks it, in proportion to its size, and the cap swings up with it, so a run of buying opens the door to bigger buys. Then it swings back below the base before settling, and damping bleeds the energy off when trading stalls. Sells and wallet-to-wallet sends are never capped, and your own wallet can buy any size.",
+  "family": "Dynamics",
+  "venue": "safe",
+  "program": "C7Whr2PbMHGAt8J7gpvRVfmUqhW9nBk17qBbZDmdnFmk",
+  "chips": [
+   "natural period: 120 seconds",
+   "damping: 8 % per second",
+   "buy energy: 40 %"
+  ]
+ },
+ {
+  "id": "resonance",
+  "name": "Resonance",
+  "tagline": "Buy in rhythm and the cap swings wide open.",
+  "blurb": "Momentum tuned for rhythm: a lightly damped oscillator with a natural period you choose. Buys that land in step with it (one every period) pile energy on and swing the cap far wider than the same buys landing at random; on devnet, four buys in rhythm built five times the energy of four off rhythm. A community that buys together, on the beat, unlocks the biggest buys. Sells and wallet-to-wallet sends are never capped, and your own wallet can buy any size.",
+  "family": "Dynamics",
+  "venue": "safe",
+  "program": "C7Whr2PbMHGAt8J7gpvRVfmUqhW9nBk17qBbZDmdnFmk",
+  "chips": [
+   "the beat: 60 seconds",
+   "damping: 2 % per second",
+   "buy energy: 40 %"
+  ]
+ },
+ {
+  "id": "coupled",
+  "name": "Coupled resonator",
+  "tagline": "Two oscillators inside one token, trading energy in beats.",
+  "blurb": "Two coupled oscillators in the hook. Buys energise the first, which sets the cap; the coupling then pours that energy into the second and back again, so the cap swells, fades as the energy moves away, and swells again: it literally beats. Sells and wallet-to-wallet sends are never capped, and your own wallet can buy any size.",
+  "family": "Dynamics",
+  "venue": "safe",
+  "program": "C7Whr2PbMHGAt8J7gpvRVfmUqhW9nBk17qBbZDmdnFmk",
+  "chips": [
+   "natural period: 180 seconds",
+   "coupling: 20 %",
+   "damping: 2 % per second"
+  ]
+ },
+ {
+  "id": "reactive",
+  "name": "Reactive pair",
+  "tagline": "Its per-buy cap moves with a partner token's buying and selling.",
+  "blurb": "The per-buy cap loosens as a partner token is accumulated and tightens as it's dumped: cap = base + sensitivity × partner net pressure. A continuous on-chain reaction to another market, enforced inside the swap.",
+  "family": "Reactive",
+  "venue": "verified",
+  "program": "BCiJ49rbFS7Lw6QfbxweBQ5a4RVsif12kHBnx4QHBUxM",
+  "chips": [
+   "base cap: 1 % supply per buy",
+   "sensitivity: 25 %"
+  ]
+ },
+ {
+  "id": "entangled",
+  "name": "Entangled (volume)",
+  "tagline": "Locked until enough of its Beacon token has changed hands.",
+  "blurb": "Transfers stay frozen until a set amount of a partner Beacon token has changed hands. Buys, sells and wallet transfers of the Beacon all count. Then it unlocks automatically, for good. Launch the two as a pair and trading the Beacon opens this one.",
+  "family": "Reactive",
+  "venue": "verified",
+  "program": "5aAXdggDpJBtAfDoFusTp44tj5XpBXbxuCwDqpc17SBb",
+  "chips": [
+   "unlocks after this share of the beacon changes hands: 5 % of its supply"
+  ]
+ },
+ {
+  "id": "index",
+  "name": "Weighted index",
+  "tagline": "Track a weighted basket of other Hooked tokens.",
+  "blurb": "The cap moves with the weighted sum of a basket's net buy pressure — a sector index as a token, with the heavy members moving it hardest. Members must be Hooked reactive-family tokens.",
+  "family": "Reactive",
+  "venue": "verified",
+  "program": "GnxyEq4SFFBXLN3ejVmNSFnciDB3ssApXRQs1eTnz2XT",
+  "chips": [
+   "base cap: 1 % supply / buy",
+   "sensitivity: 25 %"
+  ]
+ },
+ {
+  "id": "inverse",
+  "name": "Inverse pair",
+  "tagline": "Chokes as its rival pumps — anti-correlated rotation.",
+  "blurb": "The mirror of the reactive pair: the cap tightens as a rival token runs hot and relaxes as it cools, down to a floor. Two inverse-coupled tokens naturally rotate capital between themselves.",
+  "family": "Reactive",
+  "venue": "verified",
+  "program": "ATtqAHQiSNx3X1U316uW3aUm6hKvJQtEXdQvrZfCZouH",
+  "chips": [
+   "cap when rival is cool: 2 % supply / buy",
+   "sensitivity: 25 %",
+   "cap when rival is hot: 0.1 % supply"
+  ]
+ },
+ {
+  "id": "guard",
+  "name": "Trade guard",
+  "tagline": "No single trade can move more than a set share of supply.",
+  "blurb": "Every buy, sell and transfer is capped at the same share of supply, for example 0.5%. Anything bigger is refused inside the swap, so no whale can grab or dump a big bag in one trade.",
+  "family": "Guards",
+  "venue": "verified",
+  "program": "9Kvwjjf2f9jP64JuC5AHfCQdxynHV1e678kfZCpiJ31z",
+  "chips": [
+   "max per trade: 0.5 % supply"
+  ]
+ },
+ {
+  "id": "halving",
+  "name": "Halving mining",
+  "tagline": "Every buy mines a reward token — on a halving schedule.",
+  "blurb": "On launch, Hooked mints a brand-new reward token and creates a vault for it that only your token's hook can mint into. Every trade mints the reward to that vault — and the amount halves each period, decaying Bitcoin-style. Holders stake the coin on the token's page to claim their pro-rata share of the vault; the amount is derived from your mint, not a destination you pick. Fully on-chain, mint-keyed, Meteora-safe.",
+  "family": "Emission",
+  "venue": "verified",
+  "program": "H8ceAVapJUohrhs2pdy39LY3xqgKsR9B5s2FWT2t2tjo",
+  "chips": [
+   "reward per trade (at launch): 100 reward tokens",
+   "reward halves every: 24 hours"
+  ]
+ },
+ {
+  "id": "dumpcatcher",
+  "name": "Dump-catcher",
+  "tagline": "Every sell burns a slice of the reward token.",
+  "blurb": "On each sell (tokens flowing back to the pool), the hook burns a percentage of the reward-token vault in-flight — a fully on-chain deflationary response to dumping, no crank, no keeper.",
+  "family": "Emission",
+  "venue": "safe",
+  "program": "H8ceAVapJUohrhs2pdy39LY3xqgKsR9B5s2FWT2t2tjo",
+  "chips": [
+   "burn on sell: 1 % of each sell"
+  ]
+ },
+ {
+  "id": "jackpot",
+  "name": "Jackpot",
+  "tagline": "A 1-in-N trade mints a big reward payout — you set the odds and the size.",
+  "blurb": "On-chain randomness (SlotHashes) rolls on every trade: one in every N trades mints your chosen multiple of the base reward to the token's reward vault, the rest mint 1×. You set both the odds (1 in N) and the payout (×). Holders stake the coin to claim their pro-rata share of the vault — a trustless lottery driven by trading itself.",
+  "family": "Emission",
+  "venue": "safe",
+  "program": "H8ceAVapJUohrhs2pdy39LY3xqgKsR9B5s2FWT2t2tjo",
+  "chips": [
+   "base reward per trade: 50 reward tokens",
+   "jackpot odds (1 in n): 10 trades",
+   "jackpot payout: 10 × the base reward"
+  ]
+ },
+ {
+  "id": "buyburn",
+  "name": "Buyback & burn",
+  "tagline": "Trading fills a reward vault; a public burn keeps it scarce.",
+  "blurb": "Every trade mints a reward token to a per-mint vault. Anyone can trigger a permissionless burn that torches everything above a floor — a credible, on-chain buy-and-burn enforced by the chain, not a team's promise.",
+  "family": "Rewards",
+  "venue": "verified",
+  "program": "FiKwxPjoNPx1W4YiBTAtgjvuWnyDpy8A3SFkA2aPiL1U",
+  "chips": [
+   "reward per trade: 100 reward tokens",
+   "keep floor: 0 reward tokens"
+  ]
+ },
+ {
+  "id": "chapters",
+  "name": "Chapters",
+  "tagline": "A max per wallet that doubles every time enough volume trades.",
+  "blurb": "Each wallet can hold at most the current cap. The cap starts small and doubles every time the total volume traded crosses another chapter, for example every 10,000,000 tokens. Early buyers get a fair, small allowance; the token opens up as it earns real volume. Selling back into the pool always works.",
+  "family": "Caps",
+  "venue": "verified",
+  "program": "A7m1Pw8Kj8YfSEjZe3SEHAzeFE3xZPTmH4XqhLqRhQsc",
+  "chips": [
+   "starting max per wallet: 1 % supply",
+   "volume per chapter: 10,000,000 tokens traded"
+  ]
+ },
+ {
+  "id": "vise",
+  "name": "The Vise",
+  "tagline": "The cap tightens over time toward a floor.",
+  "blurb": "The max trade size shrinks by 1 basis point every N seconds, ratcheting down toward a floor — a clock-driven squeeze that steadily reduces how much any single trade can move, purely on-chain.",
+  "family": "Caps",
+  "venue": "verified",
+  "program": "A7m1Pw8Kj8YfSEjZe3SEHAzeFE3xZPTmH4XqhLqRhQsc",
+  "chips": [
+   "starting cap: 2 % supply",
+   "cap shrinks by 0.01% of supply every: 300 seconds"
+  ]
+ },
+ {
+  "id": "antisniper",
+  "name": "Anti-bundle",
+  "tagline": "Only a few trades per block, so bundlers can't sweep the launch.",
+  "blurb": "The hook counts trades in each Solana block and refuses any past your limit. A bundler packing many buys into one block gets the first few at most, so nobody can buy up the launch in a single shot.",
+  "family": "Guards",
+  "venue": "safe",
+  "program": "AsqN4BA2cGmzbajL5rdg8rmfAsWs2K4TBS7Eqa8eLaY8",
+  "chips": [
+   "max trades per block: 3 trades"
+  ]
+ },
+ {
+  "id": "oraclefloor",
+  "name": "Price floor",
+  "tagline": "Halt trading when SOL/USD falls below your floor.",
+  "blurb": "Reads a live Pyth SOL/USD price — bridged on-chain by Hooked's keeper — and rejects every transfer while the price sits under your floor. A hard, market-conditional guard enforced in the swap itself.",
+  "family": "Guards",
+  "venue": "safe",
+  "program": "Gi1RsSKvyKvGWcFC3ytboMwvgrbq57LQZcxvx9Y6WY1L",
+  "chips": [
+   "sol/usd floor: 50 $"
+  ]
+ },
+ {
+  "id": "dividends",
+  "name": "SOL dividends",
+  "tagline": "Every buy pays a SOL dividend to the buyer — claimable, real yield.",
+  "blurb": "You pre-fund a SOL pool at launch. On every buy, the hook opens the buyer's claim slot (inside the swap, no pre-registration) and drips a fixed SOL dividend into it from the pool. Holders claim their accrued SOL any time. Real, on-chain yield paid in SOL — not a minted token — funded by you and enforced by the swap. Because the slot is keyed on the buyer, trading goes through Hooked's swap route. Proven live on Meteora.",
+  "family": "Rewards",
+  "venue": "client",
+  "program": "3MYbfUJVKsKnyYJ2QSXdgchoeW8hc7fqMBBuc51pDHuo",
+  "chips": [
+   "dividend per buy: 0.002 SOL",
+   "dividend pool: 1 SOL",
+   "minimum qualifying buy: 0.05 % supply"
+  ]
+ },
+ {
+  "id": "tokendividends",
+  "name": "Token dividends",
+  "tagline": "Every buy pays the buyer your reward token — claimable, per holder.",
+  "blurb": "Like SOL dividends, but paid in a brand-new reward token you name at launch. Every buy accrues a fixed amount of the reward token to the buyer's slot (created inside the swap, no pre-registration); holders mint what they're owed any time. The reward is a separate classic-SPL token minted by your token's hook — the coin itself is never touched. Per-buyer, on-chain, funded by emission rather than a pool. Traded through Hooked's swap route.",
+  "family": "Rewards",
+  "venue": "client",
+  "program": "3MYbfUJVKsKnyYJ2QSXdgchoeW8hc7fqMBBuc51pDHuo",
+  "chips": [
+   "reward per buy: 1,000 reward tokens",
+   "slot-rent pool: 0.5 SOL",
+   "minimum qualifying buy: 0.05 % supply"
+  ]
+ },
+ {
+  "id": "vesting",
+  "name": "Holder vesting",
+  "tagline": "Each wallet unlocks its bag on its own clock — anti-dump by construction.",
+  "blurb": "Every wallet's tokens unlock on a schedule that starts the moment it first buys: nothing during the cliff, then a fixed percentage every period you choose, from hourly to weekly. A wallet can only sell what it has unlocked — the hook vetoes any sell beyond its own vested share, per holder, enforced in the swap. No team multisig, no snapshot: the lock lives in the token. Traded through Hooked's swap route. Proven live on Meteora.",
+  "family": "Caps",
+  "venue": "client",
+  "program": "3MYbfUJVKsKnyYJ2QSXdgchoeW8hc7fqMBBuc51pDHuo",
+  "chips": [
+   "only vest early buyers: 0 hours",
+   "cliff: 24 hours",
+   "unlock each period: 10 %"
+  ]
+ },
+ {
+  "id": "realyield",
+  "name": "Dividends",
+  "tagline": "Every buy pays the buyer a token you choose, straight to their wallet.",
+  "blurb": "Pick any standard SPL token you hold (USDC, a memecoin, a whole-number collectible token) and fund a vault with it at launch. On every buy, the hook sends a fixed amount from the vault to the buyer's wallet, where it just shows up, with nothing to claim. The limits: the buyer must already hold that token (a wallet without it is skipped, the buy still goes through), the vault is finite, and it pays one token, so a vault of different NFTs can't be handed out one per buy. Anyone can top the vault up. Trades through the Hooked route.",
+  "family": "Rewards",
+  "venue": "client",
+  "program": "6nxb6Q2v3LYLqwyxeCXL9aQd58omqRZ4sTHjswC4SV3L",
+  "chips": [
+   "reward token decimals: 6 decimals",
+   "reward per buy: 1 reward tokens",
+   "treasury funding: 1,000 reward tokens"
+  ]
+ },
+ {
+  "id": "tieredmembership",
+  "name": "Tiered membership",
+  "tagline": "Hold more of the members' token, buy more at once.",
+  "blurb": "A membership ladder instead of a turnstile. Wallets still need your gate token to receive this one, but now the amount they hold sets how much they can buy in a single trade: a small holding gets a small limit, the top threshold lifts the limit entirely. One token, three rungs, checked inside every trade. The limit is per trade — this hook keeps no running per-wallet total, so it doesn't pretend to enforce one. Traded through Hooked's route.",
+  "family": "Guards",
+  "venue": "client",
+  "program": "5M6KxRdyf3Vkw27prDB3KHF4A2xGPvTmjA2DK3abLo4r",
+  "chips": [
+   "dues per trade: 0.0005 SOL",
+   "bronze: hold at least: 1,000 membership tokens",
+   "bronze buy limit: 0.05 % supply"
+  ]
+ },
+ {
+  "id": "holdercap",
+  "name": "Growing holder cap",
+  "tagline": "Only N wallets can hold it — and N grows on a clock.",
+  "blurb": "The token opens with a fixed number of seats and widens on a schedule you set: so many wallets at launch, a few more every period, up to a ceiling. A wallet takes a seat the moment its balance goes from zero to non-zero, so buying more once you're in is never gated — and a wallet that sells out completely gives its seat straight back to whoever's next. The cap is on wallets, not on people: every extra wallet costs slot rent and a real minimum buy, which is friction, not a guarantee. And it limits how many hold, not how much any one of them holds. Traded through Hooked's route.",
+  "family": "Caps",
+  "venue": "client",
+  "program": "B2YVN1bWc95pSDBcZTpKgaH3v2JbmNKWRE5rSYNQ1m2x",
+  "chips": [
+   "seats at launch: 25 wallets",
+   "seats added each period: 10 wallets",
+   "how often seats open: 6 hours"
+  ]
+ },
+ {
+  "id": "milestonetreasury",
+  "name": "Milestone treasury",
+  "tagline": "Locked money that only unlocks as the holder base grows.",
+  "blurb": "\"We'll donate as we grow\" turned into something the chain does on its own. You lock SOL at launch and set holder-count milestones; each crossing frees one tranche to a beneficiary address fixed at launch. The hook counts distinct holders rather than volume on purpose — one wallet can wash-trade volume in a loop, but every new holder costs a real minimum buy and its own slot rent. Releases are permissionless: you can't withhold a tranche and you can't pull one forward.",
+  "family": "Rewards",
+  "venue": "client",
+  "program": "B2YVN1bWc95pSDBcZTpKgaH3v2JbmNKWRE5rSYNQ1m2x",
+  "chips": [
+   "treasury to lock: 1 SOL",
+   "milestone 1: 10 holders",
+   "milestone 2: 50 holders"
+  ]
+ },
+ {
+  "id": "abandonmentrefund",
+  "name": "Abandonment refund",
+  "tagline": "If the token goes quiet, the treasury goes back to holders.",
+  "blurb": "An honest dead-man's switch. You lock SOL at launch; every trade resets a clock. If the token goes untraded for the window you set, anyone can open the treasury — it snapshots and becomes claimable pro-rata by whoever still holds, in proportion to what they hold. If the team walks away, the money comes back, and nobody has to be trusted to trigger it. \"Abandoned\" is only ever a proxy: one wash trade inside the window keeps the clock alive forever, so pick a window with that in mind.",
+  "family": "Rewards",
+  "venue": "client",
+  "program": "B2YVN1bWc95pSDBcZTpKgaH3v2JbmNKWRE5rSYNQ1m2x",
+  "chips": [
+   "treasury to lock: 1 SOL",
+   "untraded before refund: 30 days",
+   "slot rent pool: 0.3 SOL"
+  ]
+ },
+ {
+  "id": "referral",
+  "name": "Referral rewards",
+  "tagline": "Every buy pays the buyer — and whoever referred them.",
+  "blurb": "A referral tree welded to the coin. Share your link; when someone buys through it, the SOL dividend that buy earns is split between them and you, at a share you set. The link is bound on-chain the first time they buy and can never be rewritten or switched off, so referrers can't be stiffed later. Referring yourself is rejected. Traded through Hooked's route, which binds the referrer in the same signature as the buy.",
+  "family": "Rewards",
+  "venue": "client",
+  "program": "3MYbfUJVKsKnyYJ2QSXdgchoeW8hc7fqMBBuc51pDHuo",
+  "chips": [
+   "dividend per buy: 0.002 SOL",
+   "referrer's share: 30 %",
+   "dividend pool: 1 SOL"
+  ]
+ },
+ {
+  "id": "twoclass",
+  "name": "Presale + public launch",
+  "tagline": "Early buyers get in first but vest; everyone after is liquid.",
+  "blurb": "The structure real launches use, enforced by the chain instead of a spreadsheet. Wallets that buy during the presale window have their tokens vest on a cliff-and-drip schedule — they got in early, so they're locked in. Everyone who arrives after the window buys freely with no lock at all. Which class you're in is decided by the block you first bought, on-chain, and can't be edited afterwards.",
+  "family": "Caps",
+  "venue": "client",
+  "program": "3MYbfUJVKsKnyYJ2QSXdgchoeW8hc7fqMBBuc51pDHuo",
+  "chips": [
+   "presale window: 24 hours",
+   "presale cliff: 24 hours",
+   "presale unlock each period: 10 %"
+  ]
+ },
+ {
+  "id": "convictioncap",
+  "name": "Conviction cap",
+  "tagline": "Hold without selling and your own buy limit grows.",
+  "blurb": "The opposite of a flat whale cap. Every wallet starts with a small per-trade limit; the longer it holds without selling, the higher its own limit climbs, up to a ceiling you set. Sell and the clock resets to the start. New money is throttled while proven holders earn the right to size up — a fair launch that opens per person rather than all at once. Pair it with a max-per-wallet if you're worried about someone farming it across many wallets.",
+  "family": "Caps",
+  "venue": "client",
+  "program": "3MYbfUJVKsKnyYJ2QSXdgchoeW8hc7fqMBBuc51pDHuo",
+  "chips": [
+   "starting buy cap: 0.1 % supply",
+   "cap growth per day held: 0.1 % supply",
+   "cap ceiling: 2 % supply"
+  ]
+ },
+ {
+  "id": "diamondhand",
+  "name": "Diamond-hand dividend",
+  "tagline": "Hold longer, earn bigger SOL dividends — selling resets your streak.",
+  "blurb": "A SOL dividend paid on every buy, scaled by how long you've held: the longer since your last sell, the bigger each buy's payout, up to a cap. Any sell resets your streak to zero, so the reward flows to patient holders and dumpers fall back to the base rate. Funded by a SOL pool you pre-fund; claim your accrued SOL any time. Traded through Hooked's swap route.",
+  "family": "Rewards",
+  "venue": "client",
+  "program": "3MYbfUJVKsKnyYJ2QSXdgchoeW8hc7fqMBBuc51pDHuo",
+  "chips": [
+   "base dividend: 0.002 SOL",
+   "bonus per day held: 25 % per day",
+   "max bonus: 300 %"
+  ]
+ },
+ {
+  "id": "whalegraduated",
+  "name": "Graduated sell caps (slots)",
+  "tagline": "The bigger your bag, the less you can sell in one trade.",
+  "blurb": "A progressive anti-dump: small holders trade freely, but the more a wallet has accumulated, the tighter its per-sell cap — down to a floor. Whales can build a position but can't unload it in one go, enforced per wallet in the swap. Traded through Hooked's swap route.",
+  "family": "Caps",
+  "venue": "client",
+  "program": "3MYbfUJVKsKnyYJ2QSXdgchoeW8hc7fqMBBuc51pDHuo",
+  "chips": [
+   "base sell cap: 1 % supply",
+   "floor sell cap: 0.1 % supply",
+   "reaches floor at holding: 3 % supply"
+  ]
+ },
+ {
+  "id": "dues",
+  "name": "Membership dues",
+  "tagline": "Hold a membership token AND pay dues to receive it.",
+  "blurb": "A members-only token with a turnstile: to buy or receive it, a wallet must already hold a gate token you choose (a membership NFT, another coin) AND pay a dues fee in the same transaction. Both checks run in the swap — no separate gate contract. Members can sell back to the pool freely. Traded through Hooked's swap route.",
+  "family": "Guards",
+  "venue": "client",
+  "program": "5M6KxRdyf3Vkw27prDB3KHF4A2xGPvTmjA2DK3abLo4r",
+  "chips": [
+   "dues per trade: 0.005 SOL"
+  ]
+ },
+ {
+  "id": "maxwallet",
+  "name": "Max per wallet (lifetime)",
+  "tagline": "A hard cap on how much any single wallet can ever buy.",
+  "blurb": "The hook keeps a per-wallet tally of everything a wallet has received and rejects the trade that would push it over your cap — a true fair-launch max-per-wallet, enforced in the swap, not a snapshot. The wallet's slot is created on its first buy (no pre-registration). Enforced on-chain; because the slot is keyed on the buyer, trading needs a Hooked-aware client.",
+  "family": "Caps",
+  "venue": "client",
+  "program": "GaFtqyc9vCurVxPtQHKSyg66KeVp7rBwQL6Mkwj9U51y",
+  "chips": [
+   "max per wallet: 1 % supply",
+   "wallet slots to fund: 200 wallets",
+   "minimum first buy: 0.01 % supply"
+  ]
+ },
+ {
+  "id": "cooldown",
+  "name": "Wallet cooldown",
+  "tagline": "Each wallet must wait between buys — per-wallet anti-spam.",
+  "blurb": "Every wallet gets its own cooldown: after receiving, it can't receive again until N blocks have passed. Independent per wallet, so one buyer's cooldown never blocks another — an on-chain anti-bot / anti-spam throttle. Slots are created lazily on first buy. Because the slot is keyed on the buyer, trading needs a Hooked-aware client.",
+  "family": "Guards",
+  "venue": "client",
+  "program": "GaFtqyc9vCurVxPtQHKSyg66KeVp7rBwQL6Mkwj9U51y",
+  "chips": [
+   "cooldown: 25 blocks",
+   "wallet slots to fund: 200 wallets",
+   "minimum first buy: 0.01 % supply"
+  ]
+ },
+ {
+  "id": "antidump",
+  "name": "Anti-dump caps",
+  "tagline": "A loose cap on buys and a tight cap on sells — enforced in the swap.",
+  "blurb": "The hook tells a buy from a sell by looking at who's sending: a swap out of the pool is a buy, a swap into the pool is a sell. It applies a separate size cap to each side, so you can let people buy freely while capping how much any single trade can sell — an on-chain anti-dump that a whale can't route around. Mint-keyed, confirmed live on Meteora (a 90%-of-bag sell is rejected while buys and small sells pass).",
+  "family": "Caps",
+  "venue": "verified",
+  "program": "Ft8R4BsJp7n3dGKsd1RbAi3WrvkiH5s5z2jyDztEQJ6f",
+  "chips": [
+   "max per buy: 2 % supply",
+   "max per sell: 0.25 % supply"
+  ]
+ },
+ {
+  "id": "dexonly",
+  "name": "DEX-only",
+  "tagline": "Moves only through a DEX, never wallet to wallet.",
+  "blurb": "The hook reads its own CPI stack depth: a plain wallet-to-wallet transfer runs it at depth 2, a DEX/router swap one frame deeper. This mode rejects the direct transfers, so the token can only move through an exchange — no quiet OTC / off-book wallet moves. Mint-keyed, confirmed live on Meteora.",
+  "family": "Guards",
+  "venue": "verified",
+  "program": "4FYZUzNqHxLRLs8bhoQf71yRW8i2jPxJxLZJFcqB9Xom",
+  "chips": []
+ },
+ {
+  "id": "p2ponly",
+  "name": "P2P-only (no curve)",
+  "tagline": "Blocks DEX swaps — the token only moves wallet-to-wallet.",
+  "blurb": "The inverse of DEX-only: the hook rejects any transfer nested under a program (a DEX/router swap runs it one frame deeper than a direct transfer), so the token can't be bought or sold on an AMM — it only moves directly between wallets. A deliberate non-tradeable / airdrop-locked / OTC-only token. Mint-keyed, confirmed live on Meteora.",
+  "family": "Guards",
+  "venue": "verified",
+  "program": "4FYZUzNqHxLRLs8bhoQf71yRW8i2jPxJxLZJFcqB9Xom",
+  "chips": []
+ },
+ {
+  "id": "venuelock",
+  "name": "Venue-locked",
+  "tagline": "Trades only through its Meteora pool, never wallet to wallet.",
+  "blurb": "The hook checks that the transaction routes through the Meteora pool program; a plain wallet-to-wallet transfer (which doesn't) is rejected. Every trade hits your official liquidity, and the token can't be quietly moved OTC or between insider wallets. Mint-keyed, Meteora-verified — normal buys and sells just work.",
+  "family": "Guards",
+  "venue": "verified",
+  "program": "3uxoNzXjn6hKxuFqi5sZjnSoFauSXjnq6i9vWPJf99Zs",
+  "chips": []
+ },
+ {
+  "id": "royalty",
+  "name": "Enforced royalty",
+  "tagline": "Every trade pays you a royalty — on-chain, unavoidable.",
+  "blurb": "The hook rejects any transfer whose transaction doesn't also pay your royalty to your wallet, verified from the transaction itself — the WEN-royalty idea, actually enforced in the transfer path with no marketplace cooperation. Because the payment must ride in the swap, this token trades through the Hooked route (a bare aggregator swap won't include it) — best for collectibles and low-velocity tokens.",
+  "family": "Guards",
+  "venue": "client",
+  "program": "3uxoNzXjn6hKxuFqi5sZjnSoFauSXjnq6i9vWPJf99Zs",
+  "chips": [
+   "royalty per trade: 0.005 SOL"
+  ]
+ },
+ {
+  "id": "tithe",
+  "name": "Tithe token",
+  "tagline": "Every trade donates to a cause you choose — by construction.",
+  "blurb": "Same enforcement as the royalty, but the payment goes to an address you name — a charity, a treasury, a public-goods fund. Every trade of the token funds the cause, verified in the transaction and rejected if it's missing. Trades through the Hooked route (the donation must ride in the swap tx).",
+  "family": "Guards",
+  "venue": "client",
+  "program": "3uxoNzXjn6hKxuFqi5sZjnSoFauSXjnq6i9vWPJf99Zs",
+  "chips": [
+   "donation per trade: 0.005 SOL"
+  ]
+ },
+ {
+  "id": "allowlist",
+  "name": "Allowlist token",
+  "tagline": "Only wallets on your list can buy and hold it.",
+  "blurb": "You provide a list of wallet addresses at launch; the hook only lets those wallets receive the token, verified against a Merkle root with a proof carried in the trade. A presale/whitelist or members-only token with no separate presale contract — the allowlist lives in the token. Anyone on the list can sell back to the pool; non-listed wallets can't buy. Trades through the Hooked route (it attaches the proof).",
+  "family": "Guards",
+  "venue": "client",
+  "program": "3uxoNzXjn6hKxuFqi5sZjnSoFauSXjnq6i9vWPJf99Zs",
+  "chips": []
+ },
+ {
+  "id": "rollingwaitlist",
+  "name": "Rolling waitlist",
+  "tagline": "Add wallets in waves — access widens on your schedule.",
+  "blurb": "An allowlist you can widen after launch. Start with wave one, then publish new waves as more people sign up — each wave replaces the on-chain list. Be honest with your community about the trade: until you freeze it, the same power that adds wallets can remove them, so every change is versioned on-chain and the token page shows the current wave. Freezing is one click and permanent.",
+  "family": "Guards",
+  "venue": "client",
+  "program": "3uxoNzXjn6hKxuFqi5sZjnSoFauSXjnq6i9vWPJf99Zs",
+  "chips": []
+ },
+ {
+  "id": "progressivetax",
+  "name": "Exit toll",
+  "tagline": "Selling costs a fee that scales with how much you sell.",
+  "blurb": "Every sell must pay a fee in the same transaction, and the fee scales with the number of tokens sold — small exits cost little, big ones cost real money. Buying is free. The fee goes to an address you name (a treasury, a charity, yourself) and the sell is simply rejected if it isn't paid, so it funds something and dampens dumping at once. Note it's priced per token, not as a percentage of value: a hook can see how many tokens move but never what they're worth.",
+  "family": "Guards",
+  "venue": "client",
+  "program": "3uxoNzXjn6hKxuFqi5sZjnSoFauSXjnq6i9vWPJf99Zs",
+  "chips": [
+   "toll per 1,000 tokens sold: 0.0005 SOL"
+  ]
+ },
+ {
+  "id": "gatedlaunch",
+  "name": "Gated launch",
+  "tagline": "Your list buys first — then it opens to everyone when it graduates.",
+  "blurb": "The same Merkle allowlist, but launched on a graduating curve on purpose. While the token is on the bonding curve only wallets on your list can buy. When it fills the curve and graduates to a full AMM, the migration takes the transfer hook off — so the gate disappears by itself and the token becomes permissionlessly tradeable by anyone, forever. Your people first, then the world, with both halves enforced by the chain rather than promised.",
+  "family": "Guards",
+  "venue": "client",
+  "program": "3uxoNzXjn6hKxuFqi5sZjnSoFauSXjnq6i9vWPJf99Zs",
+  "chips": []
+ },
+ {
+  "id": "marketmon",
+  "name": "Market monitor",
+  "tagline": "Throttles buys per block and publishes a live buy/sell feed.",
+  "blurb": "A composite market hook: it tells buys from sells by provenance, caps how many buys clear per block (anti-bundler), and keeps running buy/sell counts and volumes in on-chain state — so the token doubles as its own live market feed any program can read. Confirmed live on Meteora.",
+  "family": "Guards",
+  "venue": "verified",
+  "program": "DURKELkRRfrCuLs4fgSmDFPX2bXDCXDEQhQU2925JkNb",
+  "chips": [
+   "max buys per block: 3 buys"
+  ]
+ },
+ {
+  "id": "basket",
+  "name": "Basket index",
+  "tagline": "Track an equal-weight basket of other Hooked tokens.",
+  "blurb": "Like the weighted index, but every member counts equally: the cap moves with the average net buy pressure of a basket of reactive-family tokens. A sector or theme token that reacts to a whole group at once. A separate program from the weighted index.",
+  "family": "Reactive",
+  "venue": "safe",
+  "program": "BfTwawNVYa1V1D3naJPrb9zmpv2ypXri99n224ec2SiB",
+  "chips": [
+   "base cap: 1 % supply / buy",
+   "sensitivity: 25 %"
+  ]
+ },
+ {
+  "id": "holdergated",
+  "name": "Holder-gated",
+  "tagline": "Only wallets holding your chosen token can receive.",
+  "blurb": "To receive this token a wallet must already hold a gate token you pick — a membership token, an NFT, another coin. The hook reads the recipient's balance of the gate mint and rejects the transfer if it's missing or empty: community-gated / allowlist-by-holding / soulbound-to-a-group, with no maintained address list. Because the check is keyed on the recipient, trading needs a Hooked-aware client.",
+  "family": "Guards",
+  "venue": "client",
+  "program": "2WsdXUpABzpXbiPcKrDYypdgzr2EybGorWFHBDXYtSGx",
+  "chips": []
+ },
+ {
+  "id": "beacon",
+  "name": "Beacon (volume)",
+  "tagline": "Trade it freely. The more of it changes hands, the closer its Entangled token gets to unlocking.",
+  "blurb": "No cap and no gate. The Beacon keeps an on-chain running total of how many of its tokens have changed hands: every buy, sell and wallet transfer adds to it, and it never goes down. Pair it with an Entangled token, and that token unlocks for good once the total reaches the amount you set.",
+  "family": "Reactive",
+  "venue": "verified",
+  "program": "5aAXdggDpJBtAfDoFusTp44tj5XpBXbxuCwDqpc17SBb",
+  "chips": []
+ },
+ {
+  "id": "combo",
+  "name": "Combined rules",
+  "tagline": "Several rules on one token, picked at launch.",
+  "blurb": "One hook that runs any mix of Trade guard, Anti-dump caps, Graduated sell caps, Max per wallet, Chapters, Rising max per wallet, Anti-bundle, DEX-only, FOMO-only buys and Sniper-fee cap. Each rule you pick works exactly like its single-rule version; the ones you don't pick are skipped. Pairs that would set the same limit twice can't be combined. Your wallet is exempt from the wallet caps, FOMO-only and the Sniper-fee cap. The rules are fixed at launch.",
+  "family": "Guards",
+  "venue": "safe",
+  "program": "C3vEdPepTPRrJdQ4nQ3ZmhdXCmpKdGRKVUqxduHZWbdR",
+  "chips": []
+ }
+]
